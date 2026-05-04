@@ -1,0 +1,47 @@
+Banco-360-UCAB/
+├── index.html                              (Login - página principal)
+├── app/
+│   ├── config/
+│   ├── controllers/
+│   │   ├── dashboard.js                    (Lógica del dashboard - fecha)
+│   │   ├── login.js                        (Lógica de autenticación)
+│   │   ├── registro.js                     (Lógica de registro de usuarios)
+│   │   ├── salir.js                        (Lógica de cerrar sesión)
+│   │   └── theme.js                        (Lógica de modo oscuro/claro)
+│   ├── models/
+│   │   └── personaNatural.json             (Datos de usuarios)
+│   └── views/
+│       ├── dashboard.html                  (Vista del dashboard)
+│       ├── signup.html                     (Vista de registro)
+│       ├── auth/
+│       └── components/                     (Componentes reutilizables JS)
+│           ├── authImageSection.js          -> Sección de imagen (login/signup)
+│           ├── balanceCard.js               -> Tarjeta de saldo con toggle
+│           ├── errorModal.js                -> Modal de error reutilizable
+│           ├── loadingSpinner.js            -> Spinner de carga
+│           ├── quickActions.js              -> Botones de acción rápida
+│           ├── sidebar.js                   -> Barra lateral con navegación
+│           ├── topHeader.js                 -> Encabezado con saludo
+│           └── transactionList.js           -> Lista de transacciones
+├── public/
+│   ├── api/
+│   ├── client/
+│   ├── css/
+│   │   ├── global.css                      (Variables, reset, tipografía)
+│   │   ├── styleDashboard.css              (Layout específico del dashboard)
+│   │   ├── styleIndex.css                  (Estilos específicos del login)
+│   │   ├── styleSignup.css                 (Estilos específicos del registro)
+│   │   └── components/                     (CSS de componentes)
+│   │       ├── authForm.css                 -> Formularios de autenticación
+│   │       ├── authImageSection.css         -> Sección de imagen
+│   │       ├── balanceCard.css              -> Tarjeta de saldo
+│   │       ├── errorModal.css               -> Modal de error
+│   │       ├── loadingSpinner.css           -> Spinner de carga
+│   │       ├── quickActions.css             -> Acciones rápidas
+│   │       ├── sidebar.css                  -> Barra lateral
+│   │       └── transactionList.css          -> Lista de transacciones
+│   ├── img/
+│   │   ├── Logo.png
+│   │   ├── login.png
+│   │   └── logo_vertical.png
+│   └── js/

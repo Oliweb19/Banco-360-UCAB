@@ -1,0 +1,51 @@
+/* ============================================
+   SIGNUP - Estilos específicos
+   (Variables, reset, auth form, image section
+    están en global.css y components/)
+   ============================================ */
+
+/* Override: el box de signup es más ancho */
+.boxLogin {
+    max-width: 500px;
+}
+
+/* Override: el header del signup tiene menos margen */
+.boxLogin-header {
+    margin-bottom: 2rem;
+}
+
+.boxLogin-header .logo {
+    max-height: 50px;
+    margin-bottom: 1rem;
+}
+
+/* Override: input groups más compactos en signup */
+.input-group {
+    margin-bottom: 1.2rem;
+}
+
+.input-group label {
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.input-group input,
+.input-group select {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+}
+
+button[type="submit"] {
+    margin-top: 1rem;
+}
+
+/* Override: sección de imagen un poco más estrecha para dar espacio al form */
+@media (min-width: 900px) {
+    .login-image-section {
+        flex: 1.1;
+    }
+    .login-form-section {
+        flex: 1.3;
+    }
+}

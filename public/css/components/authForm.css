@@ -1,0 +1,222 @@
+/* ============================================
+   COMPONENTE: Auth Form
+   Estilos compartidos de formularios (login/signup)
+   ============================================ */
+
+.login-layout {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+#auth-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.login-form-section {
+    position: relative;
+    z-index: 10;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    pointer-events: none; /* Let clicks pass through to container if needed, but we want the form to be interactive */
+}
+
+.boxLogin {
+    pointer-events: auto;
+    width: 100%;
+    max-width: 400px; /* Narrower to show more image */
+    height: 100vh;
+    background-color: var(--bg-main);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 2.5rem;
+    box-shadow: -10px 0 25px rgba(0,0,0,0.1);
+    animation: slideInRight 0.8s ease-out forwards;
+    overflow-y: auto;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.boxLogin-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.boxLogin-header .logo {
+    max-height: 80px;
+    width: auto;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+}
+
+.boxLogin-header h1,
+.boxLogin-header h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+}
+
+.boxLogin-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Entradas de Formulario */
+.input-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.input-group input,
+.input-group select {
+    padding: 0.85rem 1rem;
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-input);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    color: var(--text-main);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.input-group input::placeholder {
+    color: #94a3b8;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(11, 61, 145, 0.15);
+    background-color: #fff;
+}
+
+/* Opciones extras (recordarme, enlace) */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-size: 0.85rem;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    user-select: none;
+}
+
+.options input[type="checkbox"] {
+    accent-color: var(--primary-color);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.options a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.options a:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/* Botón de Submit */
+button[type="submit"] {
+    width: 100%;
+    padding: 0.95rem;
+    background-color: var(--naranja-ucab);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+    box-shadow: 0 4px 10px rgba(11, 61, 145, 0.25);
+}
+
+button[type="submit"]:hover {
+    background-color: var(--naranja-ucab-hover);
+    box-shadow: 0 6px 15px rgba(232, 122, 43, 0.35);
+    transform: translateY(-1px);
+}
+
+button[type="submit"]:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(232, 122, 43, 0.2);
+}
+
+/* Footer link */
+.footer-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.footer-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Filas dobles para registro */
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 600px) {
+    .input-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}

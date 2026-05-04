@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banca 360 - Iniciar Sesión</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Global + Componentes -->
+    <link rel="stylesheet" href="public/css/global.css">
+    <link rel="stylesheet" href="public/css/components/authImageSection.css">
+    <link rel="stylesheet" href="public/css/components/authForm.css">
+    <link rel="stylesheet" href="public/css/components/loadingSpinner.css">
+    <link rel="stylesheet" href="public/css/components/errorModal.css">
+    <link rel="shortcut icon" href="public/img/Logo.png" type="image/x-icon">
+</head>
+<body>
+    <main class="login-layout">
+        <!-- Componente: Sección de imagen -->
+        <div id="auth-image-container"></div>
+
+        <!-- Sección del formulario -->
+        <div class="login-form-section">
+            <div class="boxLogin">
+                <div class="boxLogin-header">
+                    <img src="public/img/logo_vertical.png" alt="Banca 360 Logo" class="logo">
+                     <h2>Bienvenido a Banca 360</h2>
+                     <p>Tu banco digital, más cerca.</p>
+                </div>
+                <div class="boxLogin-body">
+                    <form action="" id="inicioSesionForm">
+                        <div class="input-group">
+                            <label for="usuario">Usuario</label>
+                            <input type="text" id="usuario" placeholder="Ingresa tu usuario" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="password">Contraseña</label>
+                            <input type="password" id="password" placeholder="Ingresa tu contraseña" required>
+                        </div>
+                        <div class="options">
+                             <label><input type="checkbox"> Recordarme</label>
+                             <a href="app/views/signup.html">¿Tienes cuenta?</a>
+                        </div>
+                        <button type="submit">Iniciar Sesión</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Componente: Spinner de carga -->
+    <div id="spinner-container"></div>
+
+    <!-- Componente: Modal de error -->
+    <div id="modal-container"></div>
+
+    <!-- Componentes JS -->
+    <script src="app/views/components/authImageSection.js"></script>
+    <script src="app/views/components/loadingSpinner.js"></script>
+    <script src="app/views/components/errorModal.js"></script>
+
+    <!-- Inicializar componentes -->
+    <script>
+        renderAuthImageSection('auth-image-container', { 
+            imageSrc: 'public/img/login.png',
+            altText: 'Login Background'
+        });
+        renderLoadingSpinner('spinner-container', { message: 'Validando credenciales...' });
+        renderErrorModal('modal-container');
+    </script>
+
+    <!-- Controller -->
+    <script src="app/controllers/login.js"></script>
+</body>
+</html>

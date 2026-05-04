@@ -1,0 +1,36 @@
+/* ============================================
+   COMPONENTE: Quick Actions
+   ============================================ */
+
+.quick-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 15px;
+    background: var(--card-bg);
+    border: 1.5px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-main);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.action-btn i {
+    color: var(--accent);
+}
+
+.action-btn:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(232, 122, 43, 0.15);
+}

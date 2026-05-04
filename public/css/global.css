@@ -1,0 +1,61 @@
+/* ============================================
+   GLOBAL STYLES - Banco 360 UCAB
+   Variables CSS compartidas, reset y tipografía
+   ============================================ */
+
+:root {
+    /* Colores primarios */
+    --primary-color: #0b3d91;
+    --primary-hover: #104fb8;
+    --naranja-ucab: #e87a2b;
+    --naranja-ucab-hover: #ed8236;
+
+    /* Colores de texto */
+    --text-main: #1a202c;
+    --text-muted: #4a5568;
+
+    /* Fondos */
+    --bg-main: #ffffff;
+    --bg-body: #F4F7FA;
+    --bg-input: #f8fafc;
+
+    /* Bordes y cards */
+    --border-color: #cbd5e0;
+    --card-bg: #FFFFFF;
+
+    /* Sidebar */
+    --sidebar-bg: #1C2B4E;
+    --accent: #E87A2B;
+    --white: #FFFFFF;
+}
+
+/* Dark Theme Override */
+body.dark-theme {
+    --primary-color: #5DB1FF;
+    --accent: #FF8A3D;
+    --bg-body: #0F172A;
+    --bg-main: #0F172A;
+    --white: #1E293B;
+    --text-main: #F1F5F9;
+    --text-muted: #94A3B8;
+    --sidebar-bg: #020617;
+    --card-bg: #1E293B;
+    --border-color: #334155;
+    --bg-input: #334155;
+}
+
+/* Reset Global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Tipografía base */
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}

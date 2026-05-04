@@ -1,0 +1,15 @@
+[
+    {
+        "id": 1,
+        "nombre": "Oliver",
+        "apellido": "Guillen",
+        "cuenta": "01105112121212121212",
+        "cedula": "31047247",
+        "telefono": "04127385926",
+        "direccion": "Calle Falsa 123",
+        "fecha_nacimiento": "19-10-2005",
+        "genero": "Masculino",
+        "saldo": 100,
+        "clave": "$2y$12$rLIGPjKvceLAU8UGi0W8Z.zZVQStvOvQymzfdtWJFRJypn6HlIC/u"
+    }
+]

@@ -1,0 +1,70 @@
+/* ============================================
+   COMPONENTE: Transaction List
+   ============================================ */
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-header h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.link-all {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.link-all:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+.transaction-list { list-style: none; margin-top: 20px; }
+
+.t-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.t-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.t-icon.plus { background: #E6FFFA; color: #38B2AC; }
+.t-icon.minus { background: #FFF5F5; color: #E53E3E; }
+
+.t-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.t-title {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.t-date {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 2px;
+}
+
+.t-amount { margin-left: auto; font-weight: 700; }
+.t-amount.positive { color: #38B2AC; }
+.t-amount.negative { color: #E53E3E; }
