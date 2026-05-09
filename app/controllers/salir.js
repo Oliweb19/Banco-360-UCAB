@@ -1,5 +1,7 @@
 const salida = document.getElementById('logoutBtn');
 
-salida.addEventListener('click', () => {
-    window.location.href = "../../index.html";
-});
+if (salida) {
+    salida.addEventListener('click', () => {
+        window.location.href = "logout.html";
+    });
+}

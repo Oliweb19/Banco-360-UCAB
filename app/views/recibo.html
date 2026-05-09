@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banca 360 - Recibo de Transacción</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- CSS Global + Recibo -->
+    <link rel="stylesheet" href="../../public/css/global.css">
+    <link rel="stylesheet" href="../../public/css/styleRecibo.css?v=3">
+    <link rel="shortcut icon" href="../../public/img/Logo.png" type="image/x-icon">
+</head>
+<body>
+    <div class="receipt-container" id="receiptContainer" style="display: none;">
+        <div class="receipt-header">
+            <i class="fas fa-check-circle"></i>
+            <h1 id="r-operacion">¡Operación Exitosa!</h1>
+            <p>En breve le llegará una notificación con el resultado.</p>
+        </div>
+        
+        <div class="receipt-body">
+            <div class="receipt-item">
+                <label>Número de Referencia</label>
+                <p id="r-referencia"></p>
+            </div>
+            <div class="receipt-item">
+                <label>Fecha</label>
+                <p id="r-fecha"></p>
+            </div>
+            <div class="receipt-item">
+                <label>Emisor</label>
+                <p id="r-emisor"></p>
+            </div>
+            <div class="receipt-item">
+                <label>Banco Emisor</label>
+                <p id="r-bancoEmisor"></p>
+            </div>
+            <div class="receipt-item">
+                <label>Destino (Cuenta/Teléfono)</label>
+                <p id="r-destino"></p>
+            </div>
+            <div class="receipt-item">
+                <label>Banco Receptor</label>
+                <p id="r-bancoReceptor"></p>
+            </div>
+            <div class="receipt-item amount">
+                <label>Monto de la Operación</label>
+                <p id="r-monto"></p>
+            </div>
+            <div class="receipt-item">
+                <label>Concepto</label>
+                <p id="r-concepto"></p>
+            </div>
+        </div>
+
+        <div class="receipt-footer">
+            <button id="btn-aceptar" class="btn-accept">ACEPTAR</button>
+        </div>
+    </div>
+
+    <!-- Controllers -->
+    <script src="../controllers/theme.js"></script>
+    <script src="../controllers/recibo.js"></script>
+</body>
+</html>

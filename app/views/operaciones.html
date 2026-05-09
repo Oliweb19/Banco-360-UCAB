@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banca 360 - Operaciones</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- CSS Global + Componentes -->
+    <link rel="stylesheet" href="../../public/css/global.css">
+    <link rel="stylesheet" href="../../public/css/components/sidebar.css?v=3">
+    <link rel="stylesheet" href="../../public/css/components/confirmModal.css">
+    <link rel="stylesheet" href="../../public/css/components/loadingSpinner.css">
+    <link rel="stylesheet" href="../../public/css/styleDashboard.css?v=2">
+    <link rel="stylesheet" href="../../public/css/styleOperaciones.css">
+    <link rel="shortcut icon" href="../../public/img/Logo.png" type="image/x-icon">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <!-- Componente: Sidebar -->
+        <div id="sidebar-container"></div>
+
+        <main class="main-content" id="main-content">
+            <!-- Componente: Top Header -->
+            <div id="header-container"></div>
+
+            <div id="alert-container"></div>
+
+            <div class="operations-grid">
+                <!-- Módulo de Transferencias -->
+                <div class="card-operation">
+                    <h3><i class="fas fa-exchange-alt"></i> Transferencia Bancaria</h3>
+                    <form id="form-transferencia">
+                        <input type="text" id="t-cuenta" placeholder="Número de cuenta (20 dígitos)" class="input-banca" required pattern="[0-9]{20}" title="Debe contener 20 dígitos numéricos">
+                        <input type="number" id="t-monto" step="0.01" min="1" placeholder="Monto Bs." class="input-banca" required>
+                        <input type="text" id="t-concepto" placeholder="Concepto (opcional)" class="input-banca">
+                        <button type="submit" class="btn-primary">Enviar Fondos</button>
+                    </form>
+                </div>
+
+
+
+                <!-- Módulo de Depósitos (Simulación de ingreso) -->
+                <div class="card-operation">
+                    <h3><i class="fas fa-hand-holding-usd"></i> Depósito (Simulador)</h3>
+                    <form id="form-deposito">
+                        <select id="d-origen" class="input-banca" required>
+                            <option value="Taquilla">Depósito por Taquilla</option>
+                            <option value="Cajero">Depósito por Cajero Automático</option>
+                            <option value="Nomina">Abono de Nómina</option>
+                        </select>
+                        <input type="number" id="d-monto" step="0.01" min="1" placeholder="Monto Bs." class="input-banca" required>
+                        <button type="submit" class="btn-primary">Ingresar Fondos</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Contenedores dinámicos para modales -->
+    <div id="confirm-modal-container"></div>
+    <div id="spinner-container"></div>
+
+    <!-- Componentes JS -->
+    <script src="../views/components/sidebar.js?v=3"></script>
+    <script src="../views/components/topHeader.js"></script>
+    <script src="../views/components/confirmModal.js"></script>
+    <script src="../views/components/loadingSpinner.js"></script>
+
+    <!-- Inicializar componentes -->
+    <script>
+        renderSidebar('sidebar-container', { 
+            activePage: 'transferencias',
+            logoSrc: '../../public/img/Logo.png'
+        });
+        
+        const user = JSON.parse(localStorage.getItem('usuarioLogueado')) || { nombre: 'Usuario' };
+        renderTopHeader('header-container', { userName: user.nombre });
+
+        renderConfirmModal('confirm-modal-container');
+        renderLoadingSpinner('spinner-container', { message: 'Procesando operación...' });
+    </script>
+
+    <!-- Controllers -->
+    <script src="../controllers/theme.js"></script>
+    <script src="../controllers/operaciones.js"></script>
+    <script src="../controllers/salir.js"></script>
+</body>
+</html>

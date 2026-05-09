@@ -68,3 +68,21 @@
 .t-amount { margin-left: auto; font-weight: 700; }
 .t-amount.positive { color: #38B2AC; }
 .t-amount.negative { color: #E53E3E; }
+
+/*CSS PARA LOS COMPONENTES DE LAS TRASACCIONES*/
+.transaction-item {
+    background-color: var(--card-bg); /* Cambia según el tema */
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.monto-entrada { color: #28a745; font-weight: bold; }
+.monto-salida { color: #dc3545; font-weight: bold; }
+
+.filtros-historial {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}

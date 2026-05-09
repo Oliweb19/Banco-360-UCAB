@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banca 360 - Sesión Finalizada</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- CSS Global + Componentes -->
+    <link rel="stylesheet" href="../../public/css/global.css">
+    <link rel="stylesheet" href="../../public/css/styleLogout.css">
+    <link rel="shortcut icon" href="../../public/img/Logo.png" type="image/x-icon">
+</head>
+<body>
+    <main class="logout-layout">
+        <div class="logout-card">
+            <i class="fas fa-check-circle logout-icon"></i>
+            <h2 class="logout-title">Sesión Finalizada</h2>
+            <p class="logout-text">Has cerrado tu sesión correctamente de manera segura. Gracias por usar Banca 360.</p>
+            <a href="../../index.html" class="btn-primary">Volver al Inicio de Sesión</a>
+        </div>
+    </main>
+    
+    <!-- Script para mantener dark mode si estaba activo, aunque lo normal es que global.css ya lo soporte con el theme.js -->
+    <script src="../controllers/theme.js"></script>
+    <script>
+        // Limpiamos los datos sensibles de sesión
+        localStorage.removeItem('usuarioLogueado');
+        // No borramos transactions ni balance para que persistan para el simulador,
+        // pero en un caso real se borrarían o se atarían a un token.
+    </script>
+</body>
+</html>

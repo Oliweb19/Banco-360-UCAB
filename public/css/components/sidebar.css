@@ -11,7 +11,7 @@
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
-    box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
 }
@@ -31,36 +31,42 @@
     border-radius: 20px;
 }
 
-.sidebar-nav { margin-top: 20px; flex-grow: 1; }
+.sidebar-nav {
+    margin-top: 20px;
+    flex-grow: 1;
+}
 
 .nav-item {
     display: block;
     padding: 15px;
-    color: rgba(255,255,255,0.85);
+    color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
     border-radius: 8px;
     margin-bottom: 5px;
     transition: 0.3s;
 }
 
-.nav-item.active, .nav-item:hover {
-    background: rgba(255,255,255,0.1);
+.nav-item.active,
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.1);
     color: white;
 }
 
-.nav-item i { margin-right: 12px; }
+.nav-item i {
+    margin-right: 12px;
+}
 
 /* Sidebar Footer */
 .sidebar-footer {
     padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .btn-logout {
     width: 100%;
     padding: 12px;
     background: transparent;
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
     border-radius: 8px;
     cursor: pointer;
@@ -73,7 +79,7 @@
 }
 
 .btn-logout:hover {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     border-color: white;
 }
 
@@ -133,7 +139,7 @@
     position: absolute;
     transition: .4s;
     width: 26px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .slider.round {
@@ -148,20 +154,177 @@
     box-shadow: 3px 3px 6px #babecc, -3px -3px 6px #ffffff;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #2D3748;
     box-shadow: inset 2px 2px 5px #000, inset -2px -2px 5px #4a5568;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     transform: translateX(26px);
     background: #1A202C;
     box-shadow: 3px 3px 6px #000;
 }
 
 /* Icon colors */
-.slider .fa-sun { color: #f39c12; opacity: 1; transition: 0.3s; }
-.slider .fa-moon { color: #f1c40f; opacity: 0; transition: 0.3s; }
+.slider .fa-sun {
+    color: #f39c12;
+    opacity: 1;
+    transition: 0.3s;
+}
 
-input:checked + .slider .fa-sun { opacity: 0; }
-input:checked + .slider .fa-moon { opacity: 1; }
+.slider .fa-moon {
+    color: #f1c40f;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+input:checked+.slider .fa-sun {
+    opacity: 0;
+}
+
+input:checked+.slider .fa-moon {
+    opacity: 1;
+}
+
+/* ============================================
+   RESPONSIVE: Floating Pill Menu (Móvil)
+   ============================================ */
+.mobile-pill-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    /* Ocultar el layout del sidebar tradicional */
+    .sidebar {
+        display: none !important;
+    }
+
+    /* Mostrar botón principal flotante (Toggle) */
+    .mobile-pill-toggle {
+        display: flex;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background-color: var(--primary-color, #1a237e);
+        color: white;
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        z-index: 10001;
+        cursor: pointer;
+        transition: transform 0.3s ease, background-color 0.3s;
+    }
+
+    body.dark-theme .mobile-pill-toggle {
+        background-color: #5DB1FF;
+        color: #020617;
+    }
+
+    /* Contenedor tipo píldora flotante */
+    .mobile-pill-menu {
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        background-color: #ffffff;
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+        gap: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        z-index: 10000;
+        transform: translateY(20px);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    body.dark-theme .mobile-pill-menu {
+        background-color: #1e293b;
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Estado expandido */
+    .mobile-pill-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .mobile-pill-toggle.active {
+        transform: rotate(45deg);
+        background-color: var(--danger-color, #e53935);
+    }
+
+    /* Íconos individuales en la píldora */
+    .pill-icon {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 20px;
+        transition: all 0.2s ease;
+        background-color: transparent;
+        color: var(--text-muted, #4a5568);
+        width: auto;
+        min-width: 45px;
+        justify-content: flex-end;
+    }
+
+    .pill-icon i {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background-color: #f1f5f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        transition: all 0.2s;
+    }
+
+    body.dark-theme .pill-icon i {
+        background-color: #334155;
+        color: #f1f5f9;
+    }
+
+    .pill-label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .pill-icon.active i {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .pill-icon.active .pill-label {
+        color: var(--primary-color);
+    }
+
+    body.dark-theme .pill-icon.active i {
+        background-color: #5DB1FF;
+        color: #020617;
+    }
+
+    body.dark-theme .pill-icon.active .pill-label {
+        color: #5DB1FF;
+    }
+
+    body.dark-theme .pill-label {
+        color: #f1f5f9;
+    }
+
+    /* Logo simplificado en el top bar en lugar de la píldora (opcional) o lo omitimos */
+}

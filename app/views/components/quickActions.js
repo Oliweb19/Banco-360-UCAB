@@ -12,9 +12,10 @@ function renderQuickActions(containerId, options = {}) {
         { icon: 'fas fa-paper-plane', label: 'Enviar' }
     ]} = options;
 
-    const buttonsHTML = actions.map(action => 
-        `<button class="action-btn"><i class="${action.icon}"></i> ${action.label}</button>`
-    ).join('\n            ');
+    const buttonsHTML = actions.map(action => {
+        let url = '../views/operaciones.html';
+        return `<button class="action-btn" onclick="window.location.href='${url}'"><i class="${action.icon}"></i> ${action.label}</button>`;
+    }).join('\n            ');
 
     const container = document.getElementById(containerId);
     container.innerHTML = `

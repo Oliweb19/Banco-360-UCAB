@@ -1,0 +1,140 @@
+/* ============================================
+   Componente: Modal de Confirmación
+   ============================================ */
+
+.confirm-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.confirm-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.confirm-modal {
+    background-color: var(--bg-card, #ffffff);
+    padding: 0;
+    border-radius: 0;
+    width: 90%;
+    max-width: 480px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    text-align: center;
+    overflow: hidden;
+}
+
+body.dark-theme .confirm-modal {
+    background-color: #1e1e1e;
+}
+
+.confirm-overlay.show .confirm-modal {
+    transform: translateY(0);
+}
+
+.confirm-modal h2 {
+    color: var(--primary-color, #1a237e);
+    margin: 0;
+    padding: 25px 20px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    background-color: rgba(0,0,0,0.03);
+    border-bottom: 1px solid var(--border-color, #eee);
+}
+
+body.dark-theme .confirm-modal h2 {
+    color: #90caf9;
+    background-color: rgba(255,255,255,0.03);
+    border-bottom-color: #333;
+}
+
+.confirm-details {
+    padding: 25px 30px;
+    text-align: left;
+}
+
+.confirm-details p {
+    color: var(--text-main, #333);
+    margin-bottom: 15px;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+body.dark-theme .confirm-details p {
+    color: #f5f5f5;
+}
+
+.confirm-details p:last-child {
+    margin-bottom: 0;
+}
+
+.confirm-details p span:first-child {
+    font-weight: 600;
+    color: var(--text-muted, #666);
+}
+
+body.dark-theme .confirm-details p span:first-child {
+    color: #aaa;
+}
+
+.confirm-details p span:last-child {
+    font-weight: 700;
+}
+
+.confirm-actions {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.03);
+    padding: 20px 30px;
+    gap: 15px;
+}
+
+body.dark-theme .confirm-actions {
+    background-color: rgba(255,255,255,0.03);
+}
+
+.confirm-actions .btn-cancel {
+    background-color: #6c757d;
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--radius-md, 6px);
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    flex: 1;
+    transition: background-color 0.2s;
+}
+
+.confirm-actions .btn-confirm {
+    background-color: var(--primary-color, #1a237e);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--radius-md, 6px);
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    flex: 1;
+    transition: background-color 0.2s;
+}
+
+.confirm-actions .btn-cancel:hover {
+    background-color: #5a6268;
+}
+
+.confirm-actions .btn-confirm:hover {
+    background-color: #121858;
+}
