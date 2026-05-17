@@ -6,7 +6,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Funciones de utilidad
     const getBalance = () => parseFloat(localStorage.getItem('userBalance')) || 0;
-    const saveBalance = (newBalance) => localStorage.setItem('userBalance', newBalance.toFixed(2));
+    const saveBalance = (newBalance) => {
+        localStorage.setItem('userBalance', newBalance.toFixed(2));
+        
+        // Actualizar el saldo en la lista de usuarios
+        const loggedUser = JSON.parse(localStorage.getItem('usuarioLogueado'));
+        if (loggedUser) {
+            let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            const userIndex = usuarios.findIndex(u => u.cuenta === loggedUser.cuenta);
+            if (userIndex !== -1) {
+                usuarios[userIndex].saldo = newBalance;
+                localStorage.setItem('usuarios', JSON.stringify(usuarios));
+            }
+        }
+    };
     
     const getTransactions = () => JSON.parse(localStorage.getItem('userTransactions')) || [];
     const saveTransactions = (transactions) => localStorage.setItem('userTransactions', JSON.stringify(transactions));

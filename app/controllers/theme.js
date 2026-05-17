@@ -1,11 +1,18 @@
 const themeSwitches = document.querySelectorAll('.theme-checkbox');
 const body = document.body;
 
-// Cargar preferencia guardada
-const currentTheme = localStorage.getItem('theme');
+// Variable para el tema por defecto
+const defaultTheme = 'dark';
+
+// Cargar preferencia guardada o usar la por defecto
+const currentTheme = localStorage.getItem('theme') || defaultTheme;
+
 if (currentTheme === 'dark') {
     body.classList.add('dark-theme');
     themeSwitches.forEach(sw => sw.checked = true);
+} else {
+    body.classList.remove('dark-theme');
+    themeSwitches.forEach(sw => sw.checked = false);
 }
 
 themeSwitches.forEach(themeSwitch => {

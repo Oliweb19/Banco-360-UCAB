@@ -1,14 +1,3 @@
-/* ============================================
-   SIGNUP - Estilos específicos
-   (Variables, reset, auth form, image section
-    están en global.css y components/)
-   ============================================ */
-
-/* Override: el box de signup es más ancho */
-.boxLogin {
-    max-width: 500px;
-}
-
 /* Override: el header del signup tiene menos margen */
 .boxLogin-header {
     margin-bottom: 2rem;

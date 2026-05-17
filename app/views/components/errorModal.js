@@ -43,11 +43,31 @@ function renderErrorModal(containerId, options = {}) {
 }
 
 /**
- * Muestra el modal de error
+ * Muestra el modal de error or éxito
  */
-function showErrorModal() {
+function showErrorModal(message = '', title = '', isSuccess = false) {
     const modal = document.getElementById('errorModal');
-    if (modal) modal.style.display = 'flex';
+    if (modal) {
+        if (message) {
+            modal.querySelector('p').innerText = message;
+        }
+        if (title) {
+            modal.querySelector('h3').innerText = title;
+        }
+        
+        const icon = modal.querySelector('.modal-icon i');
+        if (icon) {
+            if (isSuccess) {
+                icon.className = 'fas fa-check-circle';
+                icon.style.color = '#10b981'; // Verde para éxito
+            } else {
+                icon.className = 'fas fa-times-circle';
+                icon.style.color = '#ef4444'; // Rojo para error
+            }
+        }
+        
+        modal.style.display = 'flex';
+    }
 }
 
 /**

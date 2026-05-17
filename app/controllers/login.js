@@ -1,6 +1,14 @@
+async function hashClave(clave) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(clave);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
 const formulario = document.getElementById('inicioSesionForm');
 
-formulario.addEventListener('submit', (e) => {
+formulario.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // Captura de datos del formulario
@@ -10,16 +18,22 @@ formulario.addEventListener('submit', (e) => {
     // Mostrar spinner de carga (función del componente)
     showLoadingSpinner();
 
+    const claveHasheada = await hashClave(clave);
+    const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
     // Simular validación de 2 segundos
     setTimeout(() => {
-        if (usuario === "oliver" && clave === "123456") {
-            const usuarioData = { nombre: "Oliver", cuenta: "01105112121212121212" };
+        const validUser = usuarios.find(u => 
+            u.cedula === usuario && 
+            u.clave === claveHasheada
+        );
+
+        if (validUser) {
+            const usuarioData = { nombre: validUser.nombre, cuenta: validUser.cuenta };
             localStorage.setItem('usuarioLogueado', JSON.stringify(usuarioData));
 
-            // Inicializar saldo si no existe
-            if (!localStorage.getItem('userBalance')) {
-                localStorage.setItem('userBalance', '1450.00');
-            }
+            // Guardar el saldo del usuario en sesión (siempre sobreescribir)
+            localStorage.setItem('userBalance', validUser.saldo.toFixed(2));
 
             // Inicializar transacciones si no existen
             if (!localStorage.getItem('userTransactions')) {
@@ -38,4 +52,21 @@ formulario.addEventListener('submit', (e) => {
             showErrorModal();
         }
     }, 2000);
+});
+
+// Lógica para mostrar/ocultar contraseña
+document.querySelectorAll('.toggle-password').forEach(item => {
+    item.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        const input = document.getElementById(targetId);
+        if (input.type === 'password') {
+            input.type = 'text';
+            this.classList.remove('fa-eye');
+            this.classList.add('fa-eye-slash');
+        } else {
+            input.type = 'password';
+            this.classList.remove('fa-eye-slash');
+            this.classList.add('fa-eye');
+        }
+    });
 });

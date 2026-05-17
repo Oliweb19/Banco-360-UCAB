@@ -16,7 +16,7 @@
     height: 100%;
     object-fit: cover;
     object-position: 100% center; /* Move image as far left as possible (aligns right edge) */
-    translate: -17% 0;
+    translate: -20% 0;
 }
 
 .login-image-section .overlay {
