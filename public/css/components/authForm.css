@@ -10,6 +10,8 @@
     overflow: hidden;
 }
 
+#auth-image-container-login,
+#auth-image-container-signup,
 #auth-image-container {
     position: absolute;
     top: 0;

@@ -99,17 +99,27 @@ function renderSidebar(containerId, options = {}) {
 
     links.forEach(link => {
         link.addEventListener('click', (e) => {
+            e.preventDefault();
             const section = link.getAttribute('data-section');
+            
+            // Cerrar menú móvil si está abierto
+            const pillMenu = document.getElementById('mobilePillMenu');
+            const pillToggle = document.getElementById('mobilePillToggle');
+            if(pillMenu && pillMenu.classList.contains('active')) {
+                pillMenu.classList.remove('active');
+                pillToggle.classList.remove('active');
+                pillToggle.querySelector('i').className = 'fas fa-bars';
+            }
+
             if (section === 'resumen') {
-                window.location.href = '../views/dashboard.html';
+                navigateTo('dashboard');
             } else if (section === 'transferencias') {
-                window.location.href = '../views/operaciones.html';
+                navigateTo('operaciones');
             } else if (section === 'pagos') {
-                window.location.href = '../views/pagos.html';
+                navigateTo('pagos');
             } else if (section === 'movimientos') {
-                window.location.href = '../views/historial.html';
+                navigateTo('historial');
             } else {
-                e.preventDefault();
                 alert('Sección en construcción');
             }
         });
@@ -118,8 +128,9 @@ function renderSidebar(containerId, options = {}) {
     // Delegamos logouts si existen (como el móvil y desktop)
     const logouts = container.querySelectorAll('.btn-logout, #mobileLogoutBtn');
     logouts.forEach(btn => {
-        btn.addEventListener('click', () => {
-            window.location.href = '../views/logout.html';
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigateTo('login');
         });
     });
 }

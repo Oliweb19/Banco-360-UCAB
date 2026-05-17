@@ -1,23 +1,17 @@
 const themeSwitches = document.querySelectorAll('.theme-checkbox');
 const body = document.body;
 
-// Cargar preferencia guardada
-const currentTheme = localStorage.getItem('theme');
-if (currentTheme === 'dark') {
-    body.classList.add('dark-theme');
-    themeSwitches.forEach(sw => sw.checked = true);
-}
+// Ya no usamos localStorage. El tema por defecto es claro al cargar la SPA.
+// Como la SPA no recarga, el tema elegido se mantendrá durante toda la visita.
 
 themeSwitches.forEach(themeSwitch => {
     themeSwitch.addEventListener('change', (e) => {
         const isDark = e.target.checked;
         if (isDark) {
             body.classList.add('dark-theme');
-            localStorage.setItem('theme', 'dark');
             themeSwitches.forEach(sw => sw.checked = true);
         } else {
             body.classList.remove('dark-theme');
-            localStorage.setItem('theme', 'light');
             themeSwitches.forEach(sw => sw.checked = false);
         }
     });

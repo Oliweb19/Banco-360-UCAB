@@ -3,27 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banca 360 - Iniciar Sesión</title>
+    <title>Banca 360 - SPA</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- CSS Global + Componentes -->
-    <link rel="stylesheet" href="public/css/global.css">
-    <link rel="stylesheet" href="public/css/components/authImageSection.css">
-    <link rel="stylesheet" href="public/css/components/authForm.css">
-    <link rel="stylesheet" href="public/css/components/loadingSpinner.css">
-    <link rel="stylesheet" href="public/css/components/errorModal.css">
+    <link rel="stylesheet" href="public/css/global.css?v=4">
+    <link rel="stylesheet" href="public/css/components/authImageSection.css?v=4">
+    <link rel="stylesheet" href="public/css/components/authForm.css?v=4">
+    <link rel="stylesheet" href="public/css/components/loadingSpinner.css?v=4">
+    <link rel="stylesheet" href="public/css/components/errorModal.css?v=4">
+    <link rel="stylesheet" href="public/css/components/sidebar.css?v=4">
+    <link rel="stylesheet" href="public/css/components/balanceCard.css?v=4">
+    <link rel="stylesheet" href="public/css/components/quickActions.css?v=4">
+    <link rel="stylesheet" href="public/css/components/transactionList.css?v=4">
+    <link rel="stylesheet" href="public/css/components/confirmModal.css?v=4">
+    <link rel="stylesheet" href="public/css/styleDashboard.css?v=4">
+    <link rel="stylesheet" href="public/css/styleOperaciones.css?v=4">
+    <link rel="stylesheet" href="public/css/styleHistorial.css?v=4">
+    <link rel="stylesheet" href="public/css/styleSignup.css?v=4">
+    <link rel="stylesheet" href="public/css/styleRecibo.css?v=4">
+    
     <link rel="shortcut icon" href="public/img/Logo.png" type="image/x-icon">
 </head>
 <body>
-    <main class="login-layout">
-        <!-- Componente: Sección de imagen -->
-        <div id="auth-image-container"></div>
 
-        <!-- Sección del formulario -->
+    <!-- ==================== VISTA: LOGIN ==================== -->
+    <main class="login-layout main-view" id="view-login" style="display: none;">
+        <div id="auth-image-container-login"></div>
         <div class="login-form-section">
             <div class="boxLogin">
                 <div class="boxLogin-header">
@@ -32,7 +43,7 @@
                      <p>Tu banco digital, más cerca.</p>
                 </div>
                 <div class="boxLogin-body">
-                    <form action="" id="inicioSesionForm">
+                    <form id="inicioSesionForm">
                         <div class="input-group">
                             <label for="usuario">Usuario</label>
                             <input type="text" id="usuario" placeholder="Ingresa tu usuario" required>
@@ -43,7 +54,8 @@
                         </div>
                         <div class="options">
                              <label><input type="checkbox"> Recordarme</label>
-                             <a href="app/views/signup.html">¿Tienes cuenta?</a>
+                             <!-- En lugar de href, usamos un onclick para SPA -->
+                             <a href="#" onclick="navigateTo('signup'); return false;">¿Tienes cuenta?</a>
                         </div>
                         <button type="submit">Iniciar Sesión</button>
                     </form>
@@ -52,28 +64,260 @@
         </div>
     </main>
 
-    <!-- Componente: Spinner de carga -->
+    <!-- ==================== VISTA: SIGNUP ==================== -->
+    <main class="login-layout main-view" id="view-signup" style="display: none;">
+        <div id="auth-image-container-signup"></div>
+        <div class="login-form-section">
+            <div class="boxLogin">
+                <div class="boxLogin-header">
+                    <img src="public/img/logo_vertical.png" alt="Banca 360 Logo" class="logo">
+                     <h1>Crea tu cuenta</h1>
+                     <p>Únete a Banca 360 y gestiona tu futuro hoy.</p>
+                </div>
+                <div class="boxLogin-body">
+                    <form id="registroForm">
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" id="nombre" placeholder="Ej. Juan" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="apellido">Apellido</label>
+                                <input type="text" id="apellido" placeholder="Ej. Pérez" required>
+                            </div>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="cedula">Cédula</label>
+                                <input type="text" id="cedula" placeholder="V-00000000" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" id="telefono" placeholder="0412-0000000" required>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="direccion">Dirección de Habitación</label>
+                            <input type="text" id="direccion" placeholder="Av. Principal, Edificio..." required>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                                <input type="date" id="fecha_nacimiento" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="genero">Género</label>
+                                <select id="genero" required>
+                                    <option value="" disabled selected>Selecciona</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="femenino">Femenino</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="password">Contraseña</label>
+                            <input type="password" id="password" placeholder="Crea una clave segura" required>
+                        </div>
+
+                        <button type="submit">Crear Cuenta</button>
+
+                        <div class="footer-link">
+                            <p>¿Ya tienes cuenta? <a href="#" onclick="navigateTo('login'); return false;">Inicia sesión aquí</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- ==================== VISTA: APP (Autenticada) ==================== -->
+    <div id="view-app" style="display: none;">
+        <div class="dashboard-wrapper">
+            <!-- Sidebar Componente -->
+            <div id="sidebar-container"></div>
+
+            <main class="main-content" id="main-content">
+                <!-- Top Header Componente -->
+                <div id="header-container"></div>
+                
+                <div id="alert-container"></div>
+
+                <!-- SUB-VISTA: DASHBOARD -->
+                <div class="dashboard-grid sub-view" id="view-dashboard" style="display: none;">
+                    <div id="balance-container"></div>
+                    <div id="transactions-container"></div>
+                </div>
+
+                <!-- SUB-VISTA: OPERACIONES -->
+                <div class="operations-grid sub-view" id="view-operaciones" style="display: none;">
+                    <div class="card-operation">
+                        <h3><i class="fas fa-exchange-alt"></i> Transferencia Bancaria</h3>
+                        <form id="form-transferencia">
+                            <input type="text" id="t-cuenta" placeholder="Número de cuenta (20 dígitos)" class="input-banca" required pattern="[0-9]{20}" title="Debe contener 20 dígitos numéricos">
+                            <input type="number" id="t-monto" step="0.01" min="1" placeholder="Monto Bs." class="input-banca" required>
+                            <input type="text" id="t-concepto" placeholder="Concepto (opcional)" class="input-banca">
+                            <button type="submit" class="btn-primary">Enviar Fondos</button>
+                        </form>
+                    </div>
+
+                    <div class="card-operation">
+                        <h3><i class="fas fa-hand-holding-usd"></i> Depósito (Simulador)</h3>
+                        <form id="form-deposito">
+                            <select id="d-origen" class="input-banca" required>
+                                <option value="Taquilla">Depósito por Taquilla</option>
+                                <option value="Cajero">Depósito por Cajero Automático</option>
+                                <option value="Nomina">Abono de Nómina</option>
+                            </select>
+                            <input type="number" id="d-monto" step="0.01" min="1" placeholder="Monto Bs." class="input-banca" required>
+                            <button type="submit" class="btn-primary">Ingresar Fondos</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- SUB-VISTA: PAGOS -->
+                <div class="operations-grid sub-view" id="view-pagos" style="display: none;">
+                    <div class="card-operation">
+                        <h3><i class="fas fa-mobile-alt"></i> Pago Móvil</h3>
+                        <form id="form-pago-movil">
+                            <select id="p-banco" class="input-banca" required>
+                                <option value="">Seleccione Banco</option>
+                                <option value="0102">0102 - Banco de Venezuela</option>
+                                <option value="0105">0105 - Mercantil</option>
+                                <option value="0108">0108 - Provincial</option>
+                                <option value="0134">0134 - Banesco</option>
+                            </select>
+                            <input type="text" id="p-telefono" placeholder="Teléfono (Ej: 04121234567)" class="input-banca" required pattern="04[0-9]{9}" title="Ejemplo: 04121234567">
+                            <input type="text" id="p-cedula" placeholder="Cédula (Ej: V12345678)" class="input-banca" required>
+                            <input type="number" id="p-monto" step="0.01" min="1" placeholder="Monto Bs." class="input-banca" required>
+                            <button type="submit" class="btn-primary">Realizar Pago</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- SUB-VISTA: HISTORIAL -->
+                <div class="historial-container sub-view" id="view-historial" style="display: none;">
+                    <div class="historial-header">
+                        <h2>Historial de Movimientos</h2>
+                        <div class="filters">
+                            <button class="filter-btn active" data-filter="todos">Todas</button>
+                            <button class="filter-btn" data-filter="entrada">Solo entradas</button>
+                            <button class="filter-btn" data-filter="salida">Solo salidas</button>
+                        </div>
+                    </div>
+                    <div id="historial-list-container"></div>
+                </div>
+
+                <!-- SUB-VISTA: RECIBO -->
+                <div class="receipt-container sub-view" id="view-recibo" style="display: none; width: 100%; max-width: 500px; margin: 0 auto; margin-top: 20px;">
+                    <div class="receipt-header">
+                        <i class="fas fa-check-circle"></i>
+                        <h1 id="r-operacion">¡Operación Exitosa!</h1>
+                        <p>En breve le llegará una notificación con el resultado.</p>
+                    </div>
+                    
+                    <div class="receipt-body">
+                        <div class="receipt-item">
+                            <label>Número de Referencia</label>
+                            <p id="r-referencia"></p>
+                        </div>
+                        <div class="receipt-item">
+                            <label>Fecha</label>
+                            <p id="r-fecha"></p>
+                        </div>
+                        <div class="receipt-item">
+                            <label>Emisor</label>
+                            <p id="r-emisor"></p>
+                        </div>
+                        <div class="receipt-item">
+                            <label>Banco Emisor</label>
+                            <p id="r-bancoEmisor"></p>
+                        </div>
+                        <div class="receipt-item">
+                            <label>Destino (Cuenta/Teléfono)</label>
+                            <p id="r-destino"></p>
+                        </div>
+                        <div class="receipt-item">
+                            <label>Banco Receptor</label>
+                            <p id="r-bancoReceptor"></p>
+                        </div>
+                        <div class="receipt-item amount">
+                            <label>Monto de la Operación</label>
+                            <p id="r-monto"></p>
+                        </div>
+                        <div class="receipt-item">
+                            <label>Concepto</label>
+                            <p id="r-concepto"></p>
+                        </div>
+                    </div>
+
+                    <div class="receipt-footer">
+                        <button id="btn-aceptar" class="btn-accept" onclick="navigateTo('dashboard'); return false;">ACEPTAR</button>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Modales Globales -->
     <div id="spinner-container"></div>
-
-    <!-- Componente: Modal de error -->
     <div id="modal-container"></div>
+    <div id="confirm-modal-container"></div>
+    
+    <div class="modal-overlay" id="transaction-modal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" id="close-modal"><i class="fas fa-times"></i></button>
+            <div class="modal-body">
+                <i class="modal-icon fas fa-exchange-alt" id="modal-icon"></i>
+                <div class="modal-amount" id="modal-amount">0,00</div>
+                <div class="modal-title" id="modal-title">Título</div>
+                <div class="modal-details">
+                    <p>Fecha: <span id="modal-date">--</span></p>
+                    <p>Tipo: <span id="modal-type">--</span></p>
+                    <p>Referencia: <span id="modal-ref">--</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Componentes JS -->
+    <!-- JS Base & State -->
+    <script src="app/app.js"></script>
+
+    <!-- JS Componentes -->
     <script src="app/views/components/authImageSection.js"></script>
     <script src="app/views/components/loadingSpinner.js"></script>
     <script src="app/views/components/errorModal.js"></script>
+    <script src="app/views/components/sidebar.js?v=3"></script>
+    <script src="app/views/components/topHeader.js"></script>
+    <script src="app/views/components/balanceCard.js"></script>
+    <script src="app/views/components/transactionList.js"></script>
+    <script src="app/views/components/confirmModal.js"></script>
 
-    <!-- Inicializar componentes -->
+    <!-- Inicializar componentes estáticos -->
     <script>
-        renderAuthImageSection('auth-image-container', { 
-            imageSrc: 'public/img/login.png',
-            altText: 'Login Background'
-        });
-        renderLoadingSpinner('spinner-container', { message: 'Validando credenciales...' });
+        renderAuthImageSection('auth-image-container-login', { imageSrc: 'public/img/login.png', altText: 'Login Background' });
+        renderAuthImageSection('auth-image-container-signup', { imageSrc: 'public/img/login.png', altText: 'Signup Background' });
+        renderLoadingSpinner('spinner-container', { message: 'Procesando...' });
         renderErrorModal('modal-container');
+        renderSidebar('sidebar-container', { activePage: 'resumen', logoSrc: 'public/img/Logo.png' });
+        renderTopHeader('header-container', { userName: AppState.currentUser.nombre });
+        renderBalanceCard('balance-container');
+        renderConfirmModal('confirm-modal-container');
     </script>
 
-    <!-- Controller -->
+    <!-- Controllers de las Vistas -->
+    <script src="app/controllers/theme.js"></script>
     <script src="app/controllers/login.js"></script>
+    <script src="app/controllers/registro.js"></script>
+    <script src="app/controllers/dashboard.js"></script>
+    <script src="app/controllers/operaciones.js"></script>
+    <script src="app/controllers/historial.js"></script>
+    <script src="app/controllers/recibo.js"></script>
 </body>
 </html>

@@ -9,6 +9,15 @@
     margin-top: 20px;
 }
 
+@media (max-width: 768px) {
+    .operations-grid {
+        grid-template-columns: 1fr;
+    }
+    .card-operation {
+        padding: 15px;
+    }
+}
+
 .card-operation {
     background-color: var(--card-bg);
     padding: 25px;

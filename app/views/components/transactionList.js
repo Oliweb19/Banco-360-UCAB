@@ -31,7 +31,7 @@ function renderTransactionList(containerId, options = {}) {
                         </li>`
     ).join('');
 
-    const linkHtml = hideLinkAll ? '' : `<a href="../views/historial.html" class="link-all">Ver todos</a>`;
+    const linkHtml = hideLinkAll ? '' : `<a href="#" onclick="navigateTo('historial'); return false;" class="link-all">Ver todos</a>`;
 
     const container = document.getElementById(containerId);
     container.innerHTML = `
