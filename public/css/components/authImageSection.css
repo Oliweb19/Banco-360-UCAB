@@ -28,12 +28,4 @@
     background: linear-gradient(to right, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
 }
 
-@media (max-width: 900px) {
-    .login-form-section {
-        justify-content: center;
-    }
-    .boxLogin {
-        max-width: 100%;
-        background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent on mobile */
-    }
-}
+

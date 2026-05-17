@@ -15,6 +15,7 @@ function renderSidebar(containerId, options = {}) {
         { id: 'transferencias', icon: 'fas fa-exchange-alt', label: 'Transferencias'},
         { id: 'pagos', icon: 'fas fa-mobile-alt', label: 'Pagos Móvil' },
         { id: 'movimientos', icon: 'fas fa-list-ul', label: 'Historial' },
+        { id: 'perfil', icon: 'fas fa-cog', label: 'Configuración' },
     ];
 
     const navHTML = navItems.map(item => {
@@ -108,11 +109,7 @@ function renderSidebar(containerId, options = {}) {
             } else if (section === 'movimientos') {
                 window.location.href = '../views/historial.html';
             } else if (section === 'perfil') {
-                if (typeof showErrorModal === 'function') {
-                    showErrorModal('Sección en construcción', 'Aviso');
-                } else {
-                    alert('Sección en construcción');
-                }
+                window.location.href = '../views/perfil.html';
             }
         });
     });

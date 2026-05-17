@@ -219,3 +219,17 @@ button[type="submit"]:active {
     flex: 1 1 140px;
     margin-bottom: 0; /* Let gap handle spacing when wrapped */
 }
+
+/* Responsive */
+@media (max-width: 900px) {
+    .login-form-section {
+        justify-content: center;
+    }
+    .boxLogin {
+        max-width: 100%;
+        background-color: var(--bg-main);
+    }
+    #auth-image-container {
+        display: none;
+    }
+}

@@ -2,12 +2,239 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Redireccionando...</title>
-    <script>
-        window.location.href = "dashboard.html";
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banca 360 - Configuración</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- CSS Global + Componentes -->
+    <link rel="stylesheet" href="../../public/css/global.css">
+    <link rel="stylesheet" href="../../public/css/components/sidebar.css?v=3">
+    <link rel="stylesheet" href="../../public/css/components/errorModal.css">
+    <link rel="stylesheet" href="../../public/css/styleDashboard.css?v=2">
+    <link rel="shortcut icon" href="../../public/img/Logo.png" type="image/x-icon">
+    <style>
+        .config-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .section-card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        .section-card h3 {
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .data-item label {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+        .data-item p {
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+            max-width: 400px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-main);
+            font-size: 0.9rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--bg-input);
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+        .btn-guardar {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--naranja-ucab);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-guardar:hover {
+            background-color: var(--naranja-ucab-hover);
+        }
+    </style>
 </head>
 <body>
-    <p>Redireccionando al dashboard...</p>
+    <div class="dashboard-wrapper">
+        <!-- Componente: Sidebar -->
+        <div id="sidebar-container"></div>
+
+        <main class="main-content" id="main-content">
+            <!-- Componente: Top Header -->
+            <div id="header-container"></div>
+
+            <div class="config-container">
+                <div class="section-card">
+                    <h3>Mis Datos</h3>
+                    <div class="data-grid" id="datos-usuario">
+                        <!-- Se llenará con JS -->
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h3>Cambiar Contraseña</h3>
+                    <form id="form-cambio-clave">
+                        <div class="form-group">
+                            <label for="clave-actual">Contraseña Actual</label>
+                            <input type="password" id="clave-actual" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="clave-nueva">Nueva Contraseña</label>
+                            <input type="password" id="clave-nueva" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="clave-confirmar">Confirmar Nueva Contraseña</label>
+                            <input type="password" id="clave-confirmar" required>
+                        </div>
+                        <button type="submit" class="btn-guardar">Actualizar Contraseña</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Componente: Modal de error -->
+    <div id="modal-container"></div>
+
+    <!-- Componentes JS -->
+    <script src="components/sidebar.js?v=3"></script>
+    <script src="components/topHeader.js"></script>
+    <script src="components/errorModal.js"></script>
+
+    <!-- Inicializar componentes -->
+    <script>
+        renderSidebar('sidebar-container', { 
+            activePage: 'perfil',
+            logoSrc: '../../public/img/Logo.png'
+        });
+        
+        // Obtener nombre del usuario de localStorage
+        const userLocal = JSON.parse(localStorage.getItem('usuarioLogueado')) || { nombre: 'Usuario' };
+        renderTopHeader('header-container', { userName: userLocal.nombre });
+        
+        renderErrorModal('modal-container');
+
+        // Cargar datos del usuario
+        const loggedUser = JSON.parse(localStorage.getItem('usuarioLogueado'));
+        
+        if (!loggedUser) {
+            window.location.href = "../../index.html";
+        } else {
+
+        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        const fullUser = usuarios.find(u => u.cuenta === loggedUser.cuenta);
+
+        if (fullUser) {
+            const datosContainer = document.getElementById('datos-usuario');
+            datosContainer.innerHTML = `
+                <div class="data-item">
+                    <label>Nombre Completo</label>
+                    <p>${fullUser.nombre} ${fullUser.apellido}</p>
+                </div>
+                <div class="data-item">
+                    <label>Cédula</label>
+                    <p>${fullUser.cedula}</p>
+                </div>
+                <div class="data-item">
+                    <label>Teléfono</label>
+                    <p>${fullUser.telefono}</p>
+                </div>
+                <div class="data-item">
+                    <label>Dirección</label>
+                    <p>${fullUser.direccion}</p>
+                </div>
+                <div class="data-item">
+                    <label>Número de Cuenta</label>
+                    <p>${fullUser.cuenta}</p>
+                </div>
+                <div class="data-item">
+                    <label>Saldo</label>
+                    <p>Bs. ${parseFloat(fullUser.saldo).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                </div>
+            `;
+        }
+
+        // Función para hashear (copiada de login.js)
+        async function hashClave(clave) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(clave);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // Lógica de cambio de clave
+        const formClave = document.getElementById('form-cambio-clave');
+        formClave.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const claveActual = document.getElementById('clave-actual').value;
+            const claveNueva = document.getElementById('clave-nueva').value;
+            const claveConfirmar = document.getElementById('clave-confirmar').value;
+
+            const hashActualInput = await hashClave(claveActual);
+
+            if (hashActualInput !== fullUser.clave) {
+                showErrorModal("La contraseña actual es incorrecta.", "Error");
+                return;
+            }
+
+            if (claveNueva.length < 6) {
+                showErrorModal("La nueva contraseña debe tener al menos 6 caracteres.", "Error de Validación");
+                return;
+            }
+
+            if (claveNueva !== claveConfirmar) {
+                showErrorModal("Las contraseñas nuevas no coinciden.", "Error de Validación");
+                return;
+            }
+
+            // Guardar nueva clave
+            const hashNueva = await hashClave(claveNueva);
+            
+            let usuariosActualizados = JSON.parse(localStorage.getItem('usuarios')) || [];
+            const userIndex = usuariosActualizados.findIndex(u => u.cuenta === fullUser.cuenta);
+            
+            if (userIndex !== -1) {
+                usuariosActualizados[userIndex].clave = hashNueva;
+                localStorage.setItem('usuarios', JSON.stringify(usuariosActualizados));
+                
+                showErrorModal("Contraseña actualizada con éxito.", "Éxito", true);
+                formClave.reset();
+            }
+        });
+        }
+    </script>
+    <script src="../controllers/theme.js"></script>
 </body>
 </html>

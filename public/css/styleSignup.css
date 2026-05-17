@@ -1,3 +1,9 @@
+/* Override: el form de registro empieza desde arriba para que quepan todos los campos */
+.boxLogin {
+    justify-content: flex-start;
+    padding-top: 2rem;
+}
+
 /* Override: el header del signup tiene menos margen */
 .boxLogin-header {
     margin-bottom: 2rem;
